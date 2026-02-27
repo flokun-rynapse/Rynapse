@@ -1,0 +1,273 @@
+<html>
+<head>
+    <title>RYNAPSE</title>
+    <link rel="shortcut icon" href="Out-Line_Logo_2.png" type="image/x-icon">
+<style>
+@font-face {
+    font-family: "Font-2";
+    src: url("font/Font-2.otf") format("opentype");
+}
+@font-face {
+    font-family: "Font-10";
+    src: url("font/Font-10.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Font-18";
+    src: url("font/Font-18.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Font-31";
+    src: url("font/Font-31.ttf") format("truetype");
+}
+    
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Lock height to screen size */
+    background-image: url('bg-2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* This stops the background/page from moving */
+    overflow: hidden; 
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+    
+.section-title {
+    font-family: "Font-18", sans-serif;
+    font-size: 42px;
+    margin: 40px 0 20px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 8px;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.content-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 32px;
+    padding: 25px 18px;
+    width: 240px;
+    text-align: center;
+    box-shadow: 0 10px 25px -8px rgba(0,0,0,0.4);
+    transition: 0.2s;
+}
+.glass-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.02);
+    border-color: rgba(255,215,0,0.5);
+}
+.glass-card h3 {
+    font-family: "Font-31", sans-serif;
+    font-size: 32px;
+    margin: 10px 0 5px;
+    color: #FFE4B5;
+}
+.glass-card p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.form-box-header {
+    width: 1000px;
+    padding: 20px;
+    border-radius: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-box-main {
+    width: 1000px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    /* Keeps scrolling inside the box */
+    max-height: 70vh; 
+    overflow-y: auto; 
+}
+
+/* Optional: This hides the scrollbar visual but keeps the scrolling function */
+.form-box-main::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+    
+    .head {
+        flex: 1;
+    }
+    .head h1{
+        font-size: 100px ;
+        font-family: "Font-10", sans-serif;
+        color: white;
+    }
+    .head p{
+        color: white;
+        font-size: 30px ;
+        font-family: "Font-18"
+    }
+    
+.head h2{
+    font-size: 100px ;
+    font-family: "Font-2", sans-serif;
+    font-weight: bold ;
+    color: white;
+    }
+    
+    .input-button { 
+            box-sizing: border-box; 
+            width: 100px; 
+            height: 50px; 
+            background-repeat: no-repeat; 
+            background-position: center center; 
+            background-size: contain; 
+            cursor: pointer; 
+            position: relative; 
+            transition: all 0.3s ease; 
+            box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.3); 
+            padding: 0; 
+            border-radius: 25px; 
+            border: none; 
+            margin: 0 5px; 
+            font-family: "Font-31" ;
+            font-weight: bold;
+            font-size: 15px;
+            color: black ;
+        }
+        .input-button:hover { 
+            transform: translate(-3px, -3px); 
+            box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5); 
+            color: darkred;
+    }
+    
+    .contact-block {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    padding: 25px 35px;
+    width: fit-content;
+    margin: 30px auto 10px;
+    font-size: 22px;
+    border: 1px dashed gold;
+}
+.contact-block p {
+    margin: 12px 0;
+}
+
+/* quote / extra detail */
+.quote {
+    font-style: italic;
+    font-size: 26px;
+    font-family: "Font-18";
+    background: rgba(255,255,255,0.03);
+    padding: 25px 30px;
+    border-radius: 80px;
+    margin: 40px 0 20px;
+    border: 1px solid rgba(255,215,0,0.3);
+    text-align: center;
+}
+    
+    
+</style>
+</head>
+<body>
+  
+    <div class="form-box-header">✨ WELCOME TO THE RYNAPSE EDU HUB ✨</div>
+    
+    <div class="form-box-main">
+    <div class="head" style="text-align: center">
+        <br>
+        <h1>RYNAPSE</h1>
+        <p>Learn For Earn</p>
+        <h2>Welcome</h2>
+    </div>
+     <div style="text-align:center; margin-top:40px;">
+        <button class="input-button" type="button" onclick="openNewSite('about.html')">About Us</button>
+        <button class="input-button" type="button" onclick="openNewSite('Register.html')">Register</button>
+        
+    </div>
+        <div class="section-title">📚 today's courses</div>
+        <div class="content-grid">
+            <div class="glass-card"><br>
+                <h3>💻 Program</h3>
+                <p>Python, C++, HTML<br> <span style="color: #FFD966;">earn with Programming</span></p>
+            </div>
+            <div class="glass-card">
+                <h3>💻 Program for Students</h3>
+                <p>Block programing, python base, arduino Programming<br> <span style="color: #FFD966;">try for learn</span></p>
+            </div>
+            <div class="glass-card">
+                <h3>🖌️ Designing</h3>
+                <p>Poster Designing, Photo editing, adverticemet designing<br> <span style="color: #FFD966;">build and earn</span></p>
+            </div>
+            
+    </div>
+        
+        <div class="section-title">📞 Contact </div>
+        <div class="contact-block">
+            <p>📧 rynapse.rp@gmail.com</p>
+            <p>📞 8547451001 (Whatsapp)</p>
+            <p>📱 @rynapse_official</p>
+            <p><span style="font-family: 'Font-2';">out-line office hours: Sunday · 9:00am to 8:00 pm</span></p>
+        </div>
+        
+        <div class="quote">
+            “don't just learn — earn, build, and belong.”
+        </div>
+        
+        <div style="display: flex; gap: 20px; justify-content: space-around; background: rgba(0,0,0,0.3); border-radius: 60px; padding: 20px; margin: 30px 0; backdrop-filter: blur(4px);">
+            <div style="text-align: center;"><span style="font-size: 44px; font-family: 'Font-2';">10</span><br>learners</div>
+            <div style="text-align: center;"><span style="font-size: 44px; font-family: 'Font-2';">1</span><br>mentors</div>
+            <div style="text-align: center;"><span style="font-size: 44px; font-family: 'Font-2';">32</span><br>Total Classes</div>
+        </div><br>
+        
+        <div style="text-align: center">
+            <span style="font-family: 'Font-31'; background: rgba(255,255,255,0.1); padding: 10px 30px; border-radius: 200px;">✦ partner network ✦</span><br><br>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin: 25px 0; font-size: 28px; font-weight: bold; opacity: 0.9;">
+                <span style="background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px;">Clikture</span>
+                <span style="background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px;">Flokun</span>
+                <span style="background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px;">Zilware</span>
+                <span style="background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px;">Rynapse</span>
+            </div>
+        
+        </div>
+        
+        <div style="text-align: center; padding: 15px;">
+            <button class="input-button" type="button" onclick="document.querySelector('.form-box-main').scrollTo(0,0);" style="width: 200px;">⬆️ back to top</button>
+        </div>
+        <div style="text-align: center; font-size: 18px; margin-bottom: 10px; color: #ddd;">
+            Rynapse · learn for earn · since 2025
+        </div>
+    </div>
+    <script>
+    
+        function openNewSite(fileName) { window.open(fileName, '_self'); }
+        
+    </script>
+</body>
+</html>
