@@ -41,12 +41,12 @@
 
 #custom-pointer {
     width: 20px; height: 20px;
-    background: cyan;
+    background: yellow;
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 10000;
-    box-shadow: 0 0 15px cyan;
+    box-shadow: 0 0 15px yellow;
     /* Updated: Added transform transition for the shrink effect */
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
     transform: scale(1); /* Default size */
@@ -420,7 +420,7 @@
                 if (this.alpha > 0.01) this.alpha -= 0.03; 
             }
             draw() {
-                ctx.fillStyle = `rgba(0, 215, 225, ${this.alpha})`;
+                ctx.fillStyle = `rgba(225, 215, 0, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -485,3 +485,4 @@
     </script>
 </body>
 </html>
+
