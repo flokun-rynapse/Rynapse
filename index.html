@@ -1,31 +1,62 @@
 <html>
 <head>
     <title>RYNAPSE</title>
-    <link rel="shortcut icon" href="Out-Line_Logo_2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Logo_2.png" type="image/x-icon">
 <style>
 @font-face {
     font-family: "Font-2";
-    src: url("font/Font-2.otf") format("opentype");
+    src: url("Font-2.otf") format("opentype");
 }
 @font-face {
     font-family: "Font-10";
-    src: url("font/Font-10.ttf") format("truetype");
+    src: url("Font-10.ttf") format("truetype");
 }
 @font-face {
     font-family: "Font-18";
-    src: url("font/Font-18.ttf") format("truetype");
+    src: url("Font-18.ttf") format("truetype");
 }
 @font-face {
     font-family: "Font-31";
-    src: url("font/Font-31.ttf") format("truetype");
+    src: url("Font-31.ttf") format("truetype");
 }
 @font-face {
     font-family: "Font-33";
-    src: url("font/Font-33.ttf") format("truetype");
+    src: url("Font-33.ttf") format("truetype");
 }
 @font-face {
     font-family: "Font-58";
-    src: url("font/Font-58.ttf") format("truetype");
+    src: url("Font-58.ttf") format("truetype");
+}
+    
+* { cursor: none !important; }
+
+#particle-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+#custom-pointer {
+    width: 20px; height: 20px;
+    background: cyan;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 0 15px cyan;
+    /* Updated: Added transform transition for the shrink effect */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    transform: scale(1); /* Default size */
+    opacity: 1;
+}
+
+/* Hiding class triggered by JS */
+.pointer-hidden {
+    transform: scale(0) !important;
+    opacity: 0 !important;
 }
     
     body {
@@ -263,6 +294,9 @@
 </head>
 <body>
   
+    <canvas id="particle-canvas"></canvas>
+    <div id="custom-pointer"></div>
+    
     <div class="form-box-header">
             
         ✨ WELCOME TO THE RYNAPSE EDU HUB ✨
@@ -358,6 +392,77 @@
     
     
     <script>
+        const pointer = document.getElementById('custom-pointer');
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let idleTimer;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 4;
+                this.speedY = (Math.random() - 0.5) * 4;
+                this.alpha = 1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.alpha > 0.01) this.alpha -= 0.03; 
+            }
+            draw() {
+                ctx.fillStyle = `rgba(0, 215, 225, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // --- ENHANCED HIDING LOGIC ---
+        function showPointer() {
+            pointer.classList.remove('pointer-hidden');
+            canvas.style.opacity = "1";
+            clearTimeout(idleTimer);
+            
+            idleTimer = setTimeout(() => {
+                pointer.classList.add('pointer-hidden'); // Triggers shrink + fade
+                canvas.style.opacity = "0";
+            }, 1500); // Shorter idle time for a snappier feel
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            showPointer();
+            pointer.style.left = e.clientX - 10 + 'px';
+            pointer.style.top = e.clientY - 10 + 'px';
+
+            for(let i = 0; i < 4; i++) {
+                particles.push(new Particle(e.clientX, e.clientY));
+            }
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0.03) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
         function openReg() {
             document.getElementById('reg-overlay').style.display = 'flex';
         }
