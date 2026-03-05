@@ -234,6 +234,44 @@
     
     
     
+    #about-overlay{
+       display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.83);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    }
+    .content-wrapper {
+            margin: 70px auto 0; 
+            max-width: 800px;
+            padding: 0 20px;
+            font-family: sans-serif; 
+            color: lightgray;
+            
+        }
+
+       
+        .content-wrapper h2, 
+        .content-wrapper p {
+            text-align: left; 
+            margin-left: 0;
+            margin-right: 0;
+        }
+    .content-wrapper h2{
+        font-family: "Font-18", sans-serif;
+        font-size:60px;
+    }
+
+        .content-wrapper p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    
+    
+    
     
     
     
@@ -245,7 +283,7 @@
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.90);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -256,7 +294,7 @@
     padding: 35px;
     border-radius: 30px;
     text-align: center;
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 1.5s ease-out;
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -297,13 +335,13 @@
     <canvas id="particle-canvas"></canvas>
     <div id="custom-pointer"></div>
     
-    <div class="form-box-header">
+    <div class="form-box-header" style="animation: fadeIn 1s ease-out;">
             
         ✨ WELCOME TO THE RYNAPSE EDU HUB ✨
     
     </div>
     
-    <div class="form-box-main">
+    <div class="form-box-main" style="animation: fadeIn 1s ease-out;">
     <div class="head" style="text-align: center">
         <br>
         <h1>RYNAPSE</h1>
@@ -311,7 +349,7 @@
         <h2>Welcome</h2>
     </div>
      <div style="text-align:center; margin-top:40px;">
-        <button class="input-button" type="button" onclick="openNewSite('#')">About Us</button>
+        <button class="input-button" type="button" onclick="openabout()">About Us</button>
         <button class="input-button" type="button" onclick="openReg()">Register</button>
         
     </div>
@@ -378,7 +416,25 @@
                 <input type="text" name="name" class="reg-field" placeholder="Full Name" required oninput="validate()">
                 <input type="email" name="email" class="reg-field" placeholder="Email Address" required oninput="validate()">
                 <input type="text" name="phone" class="reg-field" placeholder="Phone Number" required oninput="validate()">
-                <input type="text" name="institute" class="reg-field" placeholder="Institute Name (if study)" oninput="validate()">
+                <input type="text" name="age" class="reg-field" placeholder="Age" required oninput="validate()">
+                
+                <select name="is_studying" id="study-status" class="reg-field" required onchange="toggleStudentFields()">
+                    <option value="" disabled selected>Are you currently studying?</option>
+                    <option value="yes" style="color: black;">Yes</option>
+                    <option value="no" style="color: black;">No</option>
+                </select>
+
+                <div id="student-extra-fields" style="display: none;">
+                    <input type="text" id="inst-name" name="institute" class="reg-field" placeholder="Institute Name" oninput="validate()">
+                    <input type="text" id="class-name" name="class" class="reg-field" placeholder="Class Pursuing" oninput="validate()">
+                </div>
+
+                <select name="has_laptop" class="reg-field" required onchange="validate()">
+                    <option value="" disabled selected>Do you have a laptop?</option>
+                    <option value="yes" style="color: black;">Yes, I have a laptop</option>
+                    <option value="no" style="color: black;">No, I don't</option>
+                </select>
+
                 <input type="text" name="district" class="reg-field" placeholder="District" required oninput="validate()">
                 <input type="text" name="state" class="reg-field" placeholder="State" required oninput="validate()">
                 
@@ -388,6 +444,42 @@
                 </div>
             </form>
         </div>
+    </div>
+    
+    <div id="about-overlay">
+    
+    <div class="form-box-main" style="animation: fadeIn 1.5s ease-out;"><br><br><br>
+    <div class="head" style="text-align: center">
+        <img src="Logo_2.png"; alt="Rynapse.Logo"; style="width: 125px; height: 125px;" ;>
+        <h1 style="font-size: 50px ;">RYNAPSE</h1>
+    </div>
+     <div style="text-align:center; margin-top:40px;">
+        <button type="button" class="input-button" style="color: white;" onclick="closeabout()">Close</button>        
+    </div><br>
+        <div class="content-wrapper" style="border-bottom: 2px solid rgba(255,255,255,0.3); border-top: 2px solid rgba(255,255,255,0.3); padding-bottom: 8px;"> 
+        <h2><b>About Rynapse</b></h2>
+        <p>
+        Rynapse is a dynamic digital ecosystem designed to bridge the gap between theoretical learning and real-world financial independence. Founded on the "Learn for Earn" principle, Rynapse serves as more than just an educational hub; it is a launchpad for the next generation of digital creators, programmers, and designers. By focusing on high-demand skills—ranging from Python and Arduino programming to professional graphic design—Rynapse empowers students and professionals alike to transform their technical curiosity into tangible digital assets. Through a strategic "Imagine, Illustrate, Impact" framework, the hub fosters a collaborative environment where learners don’t just absorb information; they build, belong, and thrive within a partner network of innovators. At its core, Rynapse is dedicated to turning potential into performance, ensuring that every lesson learned is a step toward a sustainable digital career.
+        </p>
+        <h2><b>Our Story</b></h2>
+        <p>
+            
+            The digital landscape is shifting faster than ever, and in 2025, we realized that traditional education wasn't keeping pace. Students were learning how to "know," but they weren't learning how to "do" or "earn." Rynapse was born from a simple, powerful observation: the most successful creators aren't just those with the most knowledge—they are those who can bridge the gap between a digital concept and a real-world result. We saw a world of untapped potential in students and aspiring designers who had the passion but lacked the bridge to the professional economy.
+            </p>
+        
+        <h2><b>Who We Are</b></h2>
+        <p>
+            <B>Rynapse</B> is a collective of digital architects, educators, and industry professionals dedicated to the next generation of tech talent. We are not a traditional school; we are a bridge. Our team consists of mentors who actively work in the fields they teach—from software engineering and Arduino robotics to high-end digital design.  <br><br>
+
+            OWe believe that learning is most effective when it is anchored in the real world. That is why Rynapse operates at the heart of a powerful Partner Network, including innovators like Clikture, Flokun, and Zilware. These partnerships allow us to provide our learners with insights that go beyond textbooks, offering a direct line to the standards and expectations of the modern digital economy.<br><br>
+
+            At our core, we are a community of builders. Whether you are a student starting your first block-coding project or a professional refining your Python expertise, we are the partners who help you Imagine the solution, Illustrate the path, and create a lasting Impact.</p>
+    </div>
+        
+        <br><br><div style="font-family: 'Font-31'; background: rgba(255,255,255,0.1); padding: 10px 30px; border-radius: 200px; text-align: center;">Rynapse · learn for earn · since 2025</div>
+        
+    </div>
+    
     </div>
     
     
@@ -463,6 +555,13 @@
         }
         animate();
         
+        function openabout(){
+            document.getElementById('about-overlay').style.display = 'flex';
+        }
+        function closeabout(){
+            document.getElementById('about-overlay').style.display = 'none';
+        }
+        
         function openReg() {
             document.getElementById('reg-overlay').style.display = 'flex';
         }
@@ -471,19 +570,36 @@
             document.getElementById('reg-overlay').style.display = 'none';
         }
 
+        function toggleStudentFields() {
+            const studyStatus = document.getElementById('study-status').value;
+            const extraFields = document.getElementById('student-extra-fields');
+            const instInput = document.getElementById('inst-name');
+            const classInput = document.getElementById('class-name');
+
+            if (studyStatus === "yes") {
+                extraFields.style.display = 'block';
+                instInput.required = true;
+                classInput.required = true;
+            } else {
+                extraFields.style.display = 'none';
+                instInput.required = false;
+                classInput.required = false;
+                instInput.value = ""; // Clear values if hidden
+                classInput.value = "";
+            }
+            validate(); // Re-check button visibility
+        }
+
         function validate() {
             const form = document.getElementById('regForm');
             const btn = document.getElementById('submit-btn');
-            // checkValidity() verifies all fields with "required" are filled properly
+            // Button only shows if all "required" fields are valid
             if (form.checkValidity()) {
                 btn.style.display = 'inline-block';
             } else {
                 btn.style.display = 'none';
             }
         }
-        function openNewSite(fileName) { window.open(fileName, '_self'); }
     </script>
 </body>
 </html>
-
-
